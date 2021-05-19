@@ -1,0 +1,642 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN"
+"http://www.w3.org/TR/html4/frameset.dtd">
+<!-- saved from url=(0014)about:internet -->
+<html>
+  <head>
+    <meta name="generator" content="HTML Tidy for HTML5 for Windows version 5.6.0">
+    <title>
+      New Help
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style type="text/css">
+
+        <!--
+        .selected {
+            font-weight: normal;
+            background-color: #E2E2E2;
+            padding: 0px, 2px, 0px, 2px;
+        }
+
+        .unselected {
+            font-weight: normal;
+            padding: 0px, 2px, 0px, 2px;
+        }
+
+        .hand {
+            cursor: hand;
+        }
+
+        .p {
+            height: 16px;
+            width: 16px;
+            vertical-align: middle;
+            border: 0;
+        }
+
+        div, body {
+            font-family: Tahoma, Verdana;
+            font-size: 11px;
+        }
+
+        A:link {
+            text-decoration: none;
+            color: #000000
+        }
+
+        A:visited {
+            text-decoration: none;
+            color: #000000
+        }
+
+        A:active {
+            text-decoration: none;
+            color: #000000
+        }
+
+        A:hover {
+            text-decoration: none;
+            color: #FF0000
+        }
+
+        -->
+    </style>
+    <script language="JavaScript">
+        <!--
+        var cl, pn, pm, bl;
+        var path = 'static/icons/';
+        var pos = 0;
+        var icon;
+        var tar = 'content';
+        var display;
+        var imgi;
+        var AutoCollapse;
+        var LastSelected = -1;
+        var loaded = false;
+        var max;
+        var divlist;
+
+        function SetEnv(v, a) {
+
+            if (v == 0) {
+                pn = [['daplus.gif', 'daminus.gif'], ['tplus.gif', 'tminus.gif'], ['uaplus.gif', 'uaminus.gif'], ['splus.gif', 'sminus.gif']];
+                PreloadImg('downangle.gif', 'tshaped.gif', 'upangle.gif', 'sline.gif', 'daplus.gif', 'daminus.gif', 'tplus.gif', 'tminus.gif', 'uaplus.gif', 'uaminus.gif', 'splus.gif', 'sminus.gif', 'blank.gif', 'line.gif');
+            } else {
+                pn = [['plus.gif', 'minus.gif']];
+                PreloadImg('plus.gif', 'minus.gif', 'blank.gif');
+
+            }
+            AutoCollapse = a;
+        }
+
+        function PreloadImg() {
+            if (document.images) {
+                var imgs = PreloadImg.arguments;
+                var pload = new Array();
+                for (var i = 0; i < imgs.length; i++) {
+                    pload[i] = new Image;
+                    pload[i].src = path + imgs[i];
+                }
+            }
+        }
+
+        function get(o) {
+            var x;
+            if (document.all) x = document.all[o];
+            if (document.getElementById) x = document.getElementById(o);
+
+            return x;
+        }
+
+
+        function pnImg(img) {
+            var i, j;
+            for (i = 0; i <= 3; i++) {
+                for (j = 0; j <= 1; j++) {
+                    if (img.substr(img.lastIndexOf('/') + 1) == pn[i][j]) {
+                        return i;
+                    }
+                }
+            }
+        }
+
+        function icon(img) {
+            var f;
+            f = img.substr(img.lastIndexOf('/') + 1);
+            if (f == '1.gif' || f == '2.gif') {
+                return ['1.gif', '2.gif'];
+            }
+            if (f == '3.gif' || f == '4.gif') {
+                return ['3.gif', '4.gif'];
+            }
+            if (f == '5.gif' || f == '6.gif') {
+                return ['5.gif', '6.gif'];
+            }
+            if (f == '7.gif' || f == '8.gif') {
+                return ['7.gif', '8.gif'];
+            }
+            return [f, f];
+        }
+
+        function show(id) {
+            get('d' + id).style.display = 'block';
+            if (get('imgn' + id)) get('imgn' + id).src = path + pn[pnImg(get('imgn' + id).src)][1];
+            get('img' + id).src = path + icon(get('img' + id).src)[1];
+
+        }
+
+        function collapse(id) {
+            get('d' + id).style.display = 'none';
+            if (get('imgn' + id)) get('imgn' + id).src = path + pn[pnImg(get('imgn' + id).src)][0];
+            get('img' + id).src = path + icon(get('img' + id).src)[0];
+
+        }
+
+        function collapseAll() {
+            var i;
+            var o;
+            for (i = 0; i <= divlist.length - 1; i++) {
+                if (o = get('d' + divlist[i])) {
+                    if (o.style.display != 'none') {
+                        collapse(divlist[i]);
+                    }
+                }
+            }
+        }
+
+        function showAll() {
+            var i;
+            var o;
+            for (i = 0; i <= divlist.length - 1; i++) {
+                if (o = get('d' + divlist[i])) {
+                    if (o.style.display != 'block') {
+                        show(divlist[i]);
+                    }
+                }
+            }
+        }
+
+        function unselectAll() {
+            var i = 0;
+            while (get("l" + i)) {
+                get("l" + i).className = "unselected";
+                i++;
+            }
+        }
+
+        function clickNode(index) {
+            var e;
+
+            e = get("l" + index);
+            if (e == null) return;
+            e = e.parentNode;
+            if (e.nodeName == 'A') {
+                if (e.href != window.location.href + '#') {
+                    parent.parent.content.location.href = e.href;
+                } else {
+                    selectNode(index);
+                }
+                e.onclick;
+            }
+        }
+
+        function showParent(ele) {
+            var e;
+            e = ele.parentNode;
+
+            if (e == null) return;
+
+            if (e.nodeName == 'DIV') {
+                if (e.id != '') show(e.id.substring(1, e.id.length));
+            } else if (e.nodeName == 'A') {
+
+            }
+            showParent(e);
+        }
+
+        function showNode(index) {
+            showParent(get("l" + index));
+            LinkClick(index);
+        }
+
+        function selectNode(index) {
+            if (LastSelected != index) {
+                //collapseAll();
+                showParent(get("l" + index));
+                LinkClick(index);
+                get('l' + index).scrollIntoView(true);
+
+
+                //alert(get('l' + index).offsetHeight + '|' + document.body.clientHeight + '|' + document.body.offsetHeight);
+                window.scrollTo(0, document.body.scrollTop); // - document.body.clientHeight /3);
+            }
+        }
+
+
+        function NodeClick(id) {
+            if (get('d' + id).style.display == 'none') {
+                show(id);
+            } else {
+                collapse(id);
+            }
+            return false;
+        }
+
+        function LinkDblClick(id) {
+            if (!AutoCollapse) {
+                if (get('d' + id).style.display == 'none') {
+                    show(id);
+                } else {
+                    collapse(id);
+                }
+            }
+            return false;
+        }
+
+        function LinkClick(index, hasChild, r) {
+            if (AutoCollapse && hasChild) {
+                if (get('d' + index).style.display == 'none') {
+                    collapseAll()
+                    showParent(get('l' + index));
+                    show(index);
+                } else {
+                    collapseAll()
+                    showParent(get('l' + index));
+                    collapse(index);
+                }
+            }
+            if (LastSelected != -1) {
+                get('l' + LastSelected).className = "unselected";
+            }
+            get('l' + index).className = "selected";
+            LastSelected = index;
+            return r;
+        }
+
+        function body_onmousemove(event) {
+            if (typeof (document.body.scrollTop) != 'undefined') {
+                if (parseInt(event.clientX) < 5) {
+                    window.scroll(0, document.body.scrollTop);
+                }
+            }
+            if (typeof (window.scrollY) != 'undefined') {
+                if (parseInt(event.clientX) < 5) {
+                    window.scrollTo(0, window.scrollY);
+                }
+            }
+        }
+
+        window.defaultStatus = '';
+
+        function body_onload() {
+            collapseAll();
+            get('loading').style.display = 'none';
+            loaded = true;
+            if (parent.parent.content.document.readyState) {
+                if (parent.parent.content.document.readyState == 'complete') {
+                    try {
+                        parent.parent.content.syn();
+                    } catch (e) {
+                    }
+                    ;
+                }
+            } else {
+                if (parent.parent.contentLoaded) {
+                    try {
+                        parent.parent.content.syn();
+                    } catch (e) {
+                    }
+                    ;
+                }
+            }
+        }
+
+        //-->
+    </script>
+    <script language="JavaScript" src="static/js/languages.js"></script>
+    <style type="text/css">
+        body {
+            background-color: #FFFFFF;
+        }
+
+        div.c2 {
+            display: none
+        }
+
+        span.c1 {
+            color: #FF0000;
+            font-size: 70%
+        }
+    </style>
+  </head>
+  <body leftmargin="5" topmargin="5" marginwidth="5" marginheight="5" onmousemove="body_onmousemove(event);" onload=
+  "body_onload();">
+    <div id="loading">
+      <span class="c1">Loading table of contents...</span><br>
+      <br>
+    </div>
+    <script>
+    SetEnv(0, false)
+    </script>
+    <div>
+      <img src="static/icons/downangle.gif" class="p"><a href="static/topics/$$unsavedpage1.htm" onclick=
+      "return LinkClick('0',false,true)" target="content" title="前言" onmousemove="window.status='前言'"><img src=
+      "static/icons/11.gif" class="p">&nbsp;<span id="l0" class="unselected">前言</span></a>
+    </div>
+    <div>
+      <a href="#" onclick="return NodeClick('1')"><img id="imgn1" src="static/icons/uaplus.gif" class="p"></a><a href="#" onclick=
+      "return LinkClick('1',true,false)" ondblclick="return LinkDblClick('1')" target="content" title="程序类信息内容" onmousemove=
+      "window.status='程序类信息内容'"><img id="img1" src="static/icons/1.gif" class="p">&nbsp;<span id="l1" class=
+      "unselected">程序类信息内容</span></a>
+    </div>
+    <div id="d1" class="c2">
+      <div>
+        <img src="static/icons/blank.gif" class="p"><a href="#" onclick="return NodeClick('2')"><img id="imgn2" src=
+        "static/icons/tplus.gif" class="p"></a><a href="static/topics/$$unsavedpage2.htm" onclick="return LinkClick('2',true,true)"
+        ondblclick="return LinkDblClick('2')" target="content" title="操作准备" onmousemove="window.status='操作准备'"><img id="img2" src=
+        "static/icons/1.gif" class="p">&nbsp;<span id="l2" class="unselected">操作准备</span></a>
+      </div>
+      <div id="d2" class="c2">
+        <div>
+          <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"><a href="#" onclick=
+          "return NodeClick('3')"><img id="imgn3" src="static/icons/tplus.gif" class="p"></a><a href=
+          "static/topics/$$unsavedpage3.htm" onclick="return LinkClick('3',true,true)" ondblclick="return LinkDblClick('3')"
+          target="content" title="基本信息" onmousemove="window.status='基本信息'"><img id="img3" src="static/icons/1.gif" class=
+          "p">&nbsp;<span id="l3" class="unselected">基本信息</span></a>
+        </div>
+        <div id="d3" class="c2">
+          <div>
+            <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"><img src="static/icons/line.gif"
+            class="p"><img src="static/icons/tshaped.gif" class="p"><a href="static/topics/$$unsavedpage4.htm" onclick=
+            "return LinkClick('4',false,true)" target="content" title="适用性信息" onmousemove="window.status='适用性信息'"><img src=
+            "static/icons/11.gif" class="p">&nbsp;<span id="l4" class="unselected">适用性信息</span></a>
+          </div>
+          <div>
+            <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"><img src="static/icons/line.gif"
+            class="p"><img src="static/icons/tshaped.gif" class="p"><a href="static/topics/$$unsavedpage5.htm" onclick=
+            "return LinkClick('5',false,true)" target="content" title="工作区域" onmousemove="window.status='工作区域'"><img src=
+            "static/icons/11.gif" class="p">&nbsp;<span id="l5" class="unselected">工作区域</span></a>
+          </div>
+          <div>
+            <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"><img src="static/icons/line.gif"
+            class="p"><img src="static/icons/tshaped.gif" class="p"><a href="static/topics/$$unsavedpage6.htm" onclick=
+            "return LinkClick('6',false,true)" target="content" title="接近口盖" onmousemove="window.status='接近口盖'"><img src=
+            "static/icons/11.gif" class="p">&nbsp;<span id="l6" class="unselected">接近口盖</span></a>
+          </div>
+          <div>
+            <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"><img src="static/icons/line.gif"
+            class="p"><a href="#" onclick="return NodeClick('7')"><img id="imgn7" src="static/icons/tplus.gif" class=
+            "p"></a><a href="static/topics/$$unsavedpage7.htm" onclick="return LinkClick('7',true,true)" ondblclick=
+            "return LinkDblClick('7')" target="content" title="基本条件" onmousemove="window.status='基本条件'"><img id="img7" src=
+            "static/icons/1.gif" class="p">&nbsp;<span id="l7" class="unselected">基本条件</span></a>
+          </div>
+          <div id="d7" class="c2">
+            <div>
+              <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"><img src=
+              "static/icons/line.gif" class="p"><img src="static/icons/line.gif" class="p"><img src="static/icons/tshaped.gif"
+              class="p"><a href="static/topics/$$unsavedpage8.htm" onclick="return LinkClick('8',false,true)" target="content"
+              title="顶起或吊升" onmousemove="window.status='顶起或吊升'"><img src="static/icons/11.gif" class="p">&nbsp;<span id="l8" class=
+              "unselected">顶起或吊升</span></a>
+            </div>
+            <div>
+              <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"><img src=
+              "static/icons/line.gif" class="p"><img src="static/icons/line.gif" class="p"><img src="static/icons/tshaped.gif"
+              class="p"><a href="static/topics/$$unsavedpage9.htm" onclick="return LinkClick('9',false,true)" target="content"
+              title="安全设备" onmousemove="window.status='安全设备'"><img src="static/icons/11.gif" class="p">&nbsp;<span id="l9" class=
+              "unselected">安全设备</span></a>
+            </div>
+            <div>
+              <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"><img src=
+              "static/icons/line.gif" class="p"><img src="static/icons/line.gif" class="p"><img src="static/icons/tshaped.gif"
+              class="p"><a href="static/topics/$$unsavedpage10.htm" onclick="return LinkClick('10',false,true)" target="content"
+              title="电源" onmousemove="window.status='电源'"><img src="static/icons/11.gif" class="p">&nbsp;<span id="l10" class=
+              "unselected">电源</span></a>
+            </div>
+            <div>
+              <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"><img src=
+              "static/icons/line.gif" class="p"><img src="static/icons/line.gif" class="p"><img src="static/icons/tshaped.gif"
+              class="p"><a href="static/topics/$$unsavedpage11.htm" onclick="return LinkClick('11',false,true)" target="content"
+              title="液压" onmousemove="window.status='液压'"><img src="static/icons/11.gif" class="p">&nbsp;<span id="l11" class=
+              "unselected">液压</span></a>
+            </div>
+            <div>
+              <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"><img src=
+              "static/icons/line.gif" class="p"><img src="static/icons/line.gif" class="p"><img src="static/icons/tshaped.gif"
+              class="p"><a href="static/topics/$$unsavedpage12.htm" onclick="return LinkClick('12',false,true)" target="content"
+              title="气压" onmousemove="window.status='气压'"><img src="static/icons/11.gif" class="p">&nbsp;<span id="l12" class=
+              "unselected">气压</span></a>
+            </div>
+            <div>
+              <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"><img src=
+              "static/icons/line.gif" class="p"><img src="static/icons/line.gif" class="p"><img src="static/icons/tshaped.gif"
+              class="p"><a href="static/topics/$$unsavedpage13.htm" onclick="return LinkClick('13',false,true)" target="content"
+              title="油料" onmousemove="window.status='油料'"><img src="static/icons/11.gif" class="p">&nbsp;<span id="l13" class=
+              "unselected">油料</span></a>
+            </div>
+            <div>
+              <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"><img src=
+              "static/icons/line.gif" class="p"><img src="static/icons/line.gif" class="p"><img src="static/icons/upangle.gif"
+              class="p"><a href="static/topics/$$unsavedpage14.htm" onclick="return LinkClick('14',false,true)" target="content"
+              title="水源" onmousemove="window.status='水源'"><img src="static/icons/11.gif" class="p">&nbsp;<span id="l14" class=
+              "unselected">水源</span></a>
+            </div>
+          </div>
+          <div>
+            <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"><img src="static/icons/line.gif"
+            class="p"><a href="#" onclick="return NodeClick('15')"><img id="imgn15" src="static/icons/uaplus.gif" class=
+            "p"></a><a href="static/topics/$$unsavedpage15.htm" onclick="return LinkClick('15',true,true)" ondblclick=
+            "return LinkDblClick('15')" target="content" title="时长" onmousemove="window.status='时长'"><img id="img15" src=
+            "static/icons/1.gif" class="p">&nbsp;<span id="l15" class="unselected">时长</span></a>
+          </div>
+          <div id="d15" class="c2">
+            <div>
+              <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"><img src=
+              "static/icons/line.gif" class="p"><img src="static/icons/blank.gif" class="p"><img src="static/icons/tshaped.gif"
+              class="p"><a href="static/topics/$$unsavedpage16.htm" onclick="return LinkClick('16',false,true)" target="content"
+              title="操作准备所需时间" onmousemove="window.status='操作准备所需时间'"><img src="static/icons/11.gif" class="p">&nbsp;<span id="l16"
+              class="unselected">操作准备所需时间</span></a>
+            </div>
+            <div>
+              <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"><img src=
+              "static/icons/line.gif" class="p"><img src="static/icons/blank.gif" class="p"><img src="static/icons/tshaped.gif"
+              class="p"><a href="static/topics/$$unsavedpage17.htm" onclick="return LinkClick('17',false,true)" target="content"
+              title="操作所需时间" onmousemove="window.status='操作所需时间'"><img src="static/icons/11.gif" class="p">&nbsp;<span id="l17"
+              class="unselected">操作所需时间</span></a>
+            </div>
+            <div>
+              <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"><img src=
+              "static/icons/line.gif" class="p"><img src="static/icons/blank.gif" class="p"><img src="static/icons/upangle.gif"
+              class="p"><a href="static/topics/$$unsavedpage18.htm" onclick="return LinkClick('18',false,true)" target="content"
+              title="收尾工作所需时间" onmousemove="window.status='收尾工作所需时间'"><img src="static/icons/11.gif" class="p">&nbsp;<span id="l18"
+              class="unselected">收尾工作所需时间</span></a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"><a href="#" onclick=
+          "return NodeClick('19')"><img id="imgn19" src="static/icons/tplus.gif" class="p"></a><a href=
+          "static/topics/$$unsavedpage19.htm" onclick="return LinkClick('19',true,true)" ondblclick="return LinkDblClick('19')"
+          target="content" title="所需条件列表" onmousemove="window.status='所需条件列表'"><img id="img19" src="static/icons/1.gif" class=
+          "p">&nbsp;<span id="l19" class="unselected">所需条件列表</span></a>
+        </div>
+        <div id="d19" class="c2">
+          <div>
+            <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"><img src="static/icons/line.gif"
+            class="p"><img src="static/icons/tshaped.gif" class="p"><a href="static/topics/$$unsavedpage20.htm" onclick=
+            "return LinkClick('20',false,true)" target="content" title="无需特别条件" onmousemove="window.status='无需特别条件'"><img src=
+            "static/icons/11.gif" class="p">&nbsp;<span id="l20" class="unselected">无需特别条件</span></a>
+          </div>
+          <div>
+            <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"><img src="static/icons/line.gif"
+            class="p"><img src="static/icons/upangle.gif" class="p"><a href="static/topics/$$unsavedpage21.htm" onclick=
+            "return LinkClick('21',false,true)" target="content" title="所需条件" onmousemove="window.status='所需条件'"><img src=
+            "static/icons/11.gif" class="p">&nbsp;<span id="l21" class="unselected">所需条件</span></a>
+          </div>
+        </div>
+        <div>
+          <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"><a href="#" onclick=
+          "return NodeClick('22')"><img id="imgn22" src="static/icons/tplus.gif" class="p"></a><a href=
+          "static/topics/$$unsavedpage22.htm" onclick="return LinkClick('22',true,true)" ondblclick="return LinkDblClick('22')"
+          target="content" title="人员" onmousemove="window.status='人员'"><img id="img22" src="static/icons/1.gif" class=
+          "p">&nbsp;<span id="l22" class="unselected">人员</span></a>
+        </div>
+        <div id="d22" class="c2">
+          <div>
+            <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"><img src="static/icons/line.gif"
+            class="p"><img src="static/icons/tshaped.gif" class="p"><a href="static/topics/$$unsavedpage23.htm" onclick=
+            "return LinkClick('23',false,true)" target="content" title="专业" onmousemove="window.status='专业'"><img src=
+            "static/icons/11.gif" class="p">&nbsp;<span id="l23" class="unselected">专业</span></a>
+          </div>
+          <div>
+            <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"><img src="static/icons/line.gif"
+            class="p"><img src="static/icons/tshaped.gif" class="p"><a href="static/topics/$$unsavedpage24.htm" onclick=
+            "return LinkClick('24',false,true)" target="content" title="人数" onmousemove="window.status='人数'"><img src=
+            "static/icons/11.gif" class="p">&nbsp;<span id="l24" class="unselected">人数</span></a>
+          </div>
+          <div>
+            <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"><img src="static/icons/line.gif"
+            class="p"><img src="static/icons/upangle.gif" class="p"><a href="static/topics/$$unsavedpage25.htm" onclick=
+            "return LinkClick('25',false,true)" target="content" title="工时" onmousemove="window.status='工时'"><img src=
+            "static/icons/11.gif" class="p">&nbsp;<span id="l25" class="unselected">工时</span></a>
+          </div>
+        </div>
+        <div>
+          <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"><a href="#" onclick=
+          "return NodeClick('26')"><img id="imgn26" src="static/icons/tplus.gif" class="p"></a><a href=
+          "static/topics/$$unsavedpage26.htm" onclick="return LinkClick('26',true,true)" ondblclick="return LinkDblClick('26')"
+          target="content" title="设备" onmousemove="window.status='设备'"><img id="img26" src="static/icons/1.gif" class=
+          "p">&nbsp;<span id="l26" class="unselected">设备</span></a>
+        </div>
+        <div id="d26" class="c2">
+          <div>
+            <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"><img src="static/icons/line.gif"
+            class="p"><a href="#" onclick="return NodeClick('27')"><img id="imgn27" src="static/icons/uaplus.gif" class=
+            "p"></a><a href="static/topics/$$unsavedpage27.htm" onclick="return LinkClick('27',true,true)" ondblclick=
+            "return LinkDblClick('27')" target="content" title="设备清单" onmousemove="window.status='设备清单'"><img id="img27" src=
+            "static/icons/1.gif" class="p">&nbsp;<span id="l27" class="unselected">设备清单</span></a>
+          </div>
+          <div id="d27" class="c2">
+            <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"><img src="static/icons/line.gif"
+            class="p"><img src="static/icons/blank.gif" class="p"><img src="static/icons/upangle.gif" class="p"><a href=
+            "static/topics/$$unsavedpage28.htm" onclick="return LinkClick('28',false,true)" target="content" title="设备详细信息"
+            onmousemove="window.status='设备详细信息'"><img src="static/icons/11.gif" class="p">&nbsp;<span id="l28" class=
+            "unselected">设备详细信息</span></a>
+          </div>
+        </div>
+        <div>
+          <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"><a href="#" onclick=
+          "return NodeClick('29')"><img id="imgn29" src="static/icons/tplus.gif" class="p"></a><a href=
+          "static/topics/$$unsavedpage29.htm" onclick="return LinkClick('29',true,true)" ondblclick="return LinkDblClick('29')"
+          target="content" title="耗材" onmousemove="window.status='耗材'"><img id="img29" src="static/icons/1.gif" class=
+          "p">&nbsp;<span id="l29" class="unselected">耗材</span></a>
+        </div>
+        <div id="d29" class="c2">
+          <div>
+            <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"><img src="static/icons/line.gif"
+            class="p"><a href="#" onclick="return NodeClick('30')"><img id="imgn30" src="static/icons/uaplus.gif" class=
+            "p"></a><a href="static/topics/$$unsavedpage30.htm" onclick="return LinkClick('30',true,true)" ondblclick=
+            "return LinkDblClick('30')" target="content" title="耗材清单" onmousemove="window.status='耗材清单'"><img id="img30" src=
+            "static/icons/1.gif" class="p">&nbsp;<span id="l30" class="unselected">耗材清单</span></a>
+          </div>
+          <div id="d30" class="c2">
+            <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"><img src="static/icons/line.gif"
+            class="p"><img src="static/icons/blank.gif" class="p"><img src="static/icons/upangle.gif" class="p"><a href=
+            "static/topics/$$unsavedpage31.htm" onclick="return LinkClick('31',false,true)" target="content" title="耗材详细信息"
+            onmousemove="window.status='耗材详细信息'"><img src="static/icons/11.gif" class="p">&nbsp;<span id="l31" class=
+            "unselected">耗材详细信息</span></a>
+          </div>
+        </div>
+        <div>
+          <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"><a href="#" onclick=
+          "return NodeClick('32')"><img id="imgn32" src="static/icons/tplus.gif" class="p"></a><a href=
+          "static/topics/$$unsavedpage32.htm" onclick="return LinkClick('32',true,true)" ondblclick="return LinkDblClick('32')"
+          target="content" title="备件" onmousemove="window.status='备件'"><img id="img32" src="static/icons/1.gif" class=
+          "p">&nbsp;<span id="l32" class="unselected">备件</span></a>
+        </div>
+        <div id="d32" class="c2">
+          <div>
+            <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"><img src="static/icons/line.gif"
+            class="p"><a href="#" onclick="return NodeClick('33')"><img id="imgn33" src="static/icons/uaplus.gif" class=
+            "p"></a><a href="static/topics/$$unsavedpage33.htm" onclick="return LinkClick('33',true,true)" ondblclick=
+            "return LinkDblClick('33')" target="content" title="备件清单" onmousemove="window.status='备件清单'"><img id="img33" src=
+            "static/icons/1.gif" class="p">&nbsp;<span id="l33" class="unselected">备件清单</span></a>
+          </div>
+          <div id="d33" class="c2">
+            <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"><img src="static/icons/line.gif"
+            class="p"><img src="static/icons/blank.gif" class="p"><img src="static/icons/upangle.gif" class="p"><a href=
+            "static/topics/$$unsavedpage34.htm" onclick="return LinkClick('34',false,true)" target="content" title="备件详细信息"
+            onmousemove="window.status='备件详细信息'"><img src="static/icons/11.gif" class="p">&nbsp;<span id="l34" class=
+            "unselected">备件详细信息</span></a>
+          </div>
+        </div>
+        <div>
+          <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"><img src=
+          "static/icons/upangle.gif" class="p"><a href="static/topics/$$unsavedpage35.htm" onclick=
+          "return LinkClick('35',false,true)" target="content" title="安全条件" onmousemove="window.status='安全条件'"><img src=
+          "static/icons/11.gif" class="p">&nbsp;<span id="l35" class="unselected">安全条件</span></a>
+        </div>
+      </div>
+      <div>
+        <img src="static/icons/blank.gif" class="p"><a href="#" onclick="return NodeClick('36')"><img id="imgn36" src=
+        "static/icons/tplus.gif" class="p"></a><a href="static/topics/$$unsavedpage36.htm" onclick=
+        "return LinkClick('36',true,true)" ondblclick="return LinkDblClick('36')" target="content" title="主要步骤" onmousemove=
+        "window.status='主要步骤'"><img id="img36" src="static/icons/1.gif" class="p">&nbsp;<span id="l36" class=
+        "unselected">主要步骤</span></a>
+      </div>
+      <div id="d36" class="c2">
+        <div>
+          <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"><a href="#" onclick=
+          "return NodeClick('37')"><img id="imgn37" src="static/icons/uaplus.gif" class="p"></a> <a href=
+          "static/topics/$$unsavedpage37.htm" onclick="return LinkClick('37',true,true)" ondblclick="return LinkDblClick('37')"
+          target="content" title="步骤1" onmousemove="window.status='步骤1'"><img id="img37" src="static/icons/1.gif" class=
+          "p">&nbsp;<span id="l37" class="unselected">步骤1</span></a>
+        </div>
+        <div id="d37" class="c2">
+          <div>
+            <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"> <img src=
+            "static/icons/blank.gif" class="p"><a href="#" onclick="return NodeClick('38')"><img id="imgn38" src=
+            "static/icons/uaplus.gif" class="p"></a><a href="static/topics/$$unsavedpage38.htm" onclick=
+            "return LinkClick('38',true,true)" ondblclick="return LinkDblClick('38')" target="content" title="步骤2" onmousemove=
+            "window.status='步骤2'"><img id="img38" src="static/icons/1.gif" class="p">&nbsp;<span id="l38" class=
+            "unselected">步骤2</span></a>
+          </div>
+          <div id="d38" class="c2">
+            <img src="static/icons/blank.gif" class="p"><img src="static/icons/line.gif" class="p"><img src=
+            "static/icons/blank.gif" class="p"><img src="static/icons/blank.gif" class="p"> <img src="static/icons/upangle.gif"
+            class="p"> <a href="static/topics/$$unsavedpage39.htm" onclick="return LinkClick('39',false,true)" target="content"
+            title="步骤3" onmousemove="window.status='步骤3'"><img src="static/icons/11.gif" class="p">&nbsp;<span id="l39" class=
+            "unselected">步骤3</span></a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <img src="static/icons/blank.gif" class="p"><img src="static/icons/upangle.gif" class="p">
+		<a href="static/topics/$$unsavedpage40.htm" onclick="return LinkClick('40',false,true)" target="content" title="收尾工作" onmousemove="window.status='收尾工作'">
+		<img src="static/icons/11.gif" class="p">
+		<span id="l40" class="unselected">收尾工作</span></a>
+      </div>
+    </div>
+    <script>
+    divlist = [1, 2, 3, 7, 15, 19, 22, 26, 27, 29, 30, 32, 33, 36, 37, 38]
+    </script>
+  </body>
+</html>

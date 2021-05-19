@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<!-- saved from url=(0014)about:internet -->
+<html>
+  <head>
+    <meta name="generator" content="HTML Tidy for HTML5 for Windows version 5.6.0">
+    <title>
+      New Help
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script>
+    var LocString=String(window.document.location.href);
+    var DefaultPage;
+    function GetQueryString(str){
+    var rs=new RegExp("(^|)"+str+"=([^\&]*)(\&|$)","gi").exec(LocString),tmp;
+    if(tmp=rs)return tmp[2];
+    return null;
+    }
+    DefaultPage = GetQueryString("page");
+    if(DefaultPage==null || DefaultPage==''){
+        DefaultPage = escape('$$unsavedpage1.htm');
+    }
+    </script>
+    <script>
+    document.write('<frameset rows="*" cols="270,*" framespacing="5" frameborder="1" border="5" bordercolor="">');
+    document.write('<frame src="webhelpleft.htm" name="nav" frameborder="1" scrolling="no" bordercolor="" id="nav">');
+    document.write('<frame src="static/topics/' +  DefaultPage + '" name="content" frameborder="1" bordercolor="" scrolling="auto" id="content">');
+    document.write('<\/frameset>');
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
